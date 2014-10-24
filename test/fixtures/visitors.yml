@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: visitors
+#
+#  id         :integer          not null, primary key
+#  ip         :string(255)
+#  cookie_id  :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ip: MyString
+  cookie_id: MyString
+
+two:
+  ip: MyString
+  cookie_id: MyString
