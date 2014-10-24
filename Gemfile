@@ -34,6 +34,8 @@ gem 'async-rails'
 
 gem 'pry'
 
+gem 'rails_12factor'
+
 gem 'devise'
 
 gem 'acts_as_votable', '~> 0.10.0'
