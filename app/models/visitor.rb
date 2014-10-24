@@ -10,7 +10,13 @@
 #
 
 class Visitor < ActiveRecord::Base
-  
+  acts_as_votable
+
   validates :ip, :cookie_id, presence: true
   validates :ip, uniqueness: {scope: :cookie_id}
+
+  def cast_votes
+    ActsAsVotable::Vote.all.by_type(Visitor).where(voter_id: self.id)
+  end
+
 end

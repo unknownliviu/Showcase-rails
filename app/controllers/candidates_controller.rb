@@ -1,5 +1,5 @@
 class CandidatesController < ApplicationController
-  before_action :set_candidate, only: [:show, :edit, :update, :destroy]
+  before_action :set_candidate, only: [:show, :edit, :update, :destroy, :vote]
 
   # GET /candidates
   # GET /candidates.json
@@ -59,6 +59,23 @@ class CandidatesController < ApplicationController
       format.html { redirect_to candidates_url, notice: 'Candidate was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def vote
+    votes = @visitor.cast_votes
+    @voted = false
+
+    if votes.count == 0
+      @candidate.liked_by @visitor
+      @voted = true
+    elsif votes.count == 1
+        vote = votes.first
+        if vote.votable.sex != @candidate.sex
+          @candidate.liked_by @visitor
+          @voted = true
+        end
+    end
+    redirect_to @candidate, notice: @voted ? 'Your vote was cast' : 'You already voted in this category!'
   end
 
   private
