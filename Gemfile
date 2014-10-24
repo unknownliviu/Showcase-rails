@@ -28,6 +28,8 @@ gem 'spring',        group: :development
 
 gem 'rack-cache', group: :production
 
+gem 'rack-zippy'
+
 gem 'devise'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
