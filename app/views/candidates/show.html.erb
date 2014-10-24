@@ -14,6 +14,24 @@
   <strong>University:</strong>
   <%= @candidate.university %>
 </p>
+  <% if user_signed_in? %>
+  <strong>Votes: <%= @candidate.votes_for.size %></strong>
+    <h2>Voters:</h2>
+    <table>
+      <thead>
+        <th>ip</th>
+        <th>timestamp</th>
+      </thead>
+      <tbody>
+        <% @candidate.votes_for.each do |vote| %>
+        <tr>
+          <td><%= vote.voter.ip %></td>
+          <td><%= vote.updated_at %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 <%= form_tag vote_path(@candidate) do %>
   <%= submit_tag 'Vote', class: 'button' %>
 <% end %>
