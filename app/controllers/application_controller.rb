@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
     else
       @visitor = Visitor.find_by(ip: ip, cookie_id: cookies[:ref])      
     end
-
   end
 
 end
