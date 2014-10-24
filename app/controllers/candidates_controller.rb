@@ -1,5 +1,6 @@
 class CandidatesController < ApplicationController
   before_action :set_candidate, only: [:show, :edit, :update, :destroy, :vote]
+  skip_before_filter :verify_authenticity_token, only: :vote
 
   # GET /candidates
   # GET /candidates.json
