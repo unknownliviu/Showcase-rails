@@ -62,6 +62,9 @@ class CandidatesController < ApplicationController
   end
 
   def vote
+    if @visitor.blank?
+      redirect_to @candidate, alert: 'Your vote is invalid!' and return
+    end
     votes = @visitor.cast_votes
     @voted = false
 
