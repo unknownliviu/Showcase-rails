@@ -15,7 +15,7 @@
   <%= @candidate.university %>
 </p>
   <% if user_signed_in? %>
-  <strong>Votes: <%= @candidate.votes_for.size %></strong>
+  <strong>Votes: <%= @candidate.fancy_votes.size %></strong>
     <h2>Voters:</h2>
     <table>
       <thead>
@@ -23,9 +23,9 @@
         <th>timestamp</th>
       </thead>
       <tbody>
-        <% @candidate.votes_for.each do |vote| %>
+        <% @candidate.fancy_votes.each do |vote| %>
         <tr>
-          <td><%= vote.voter.ip %></td>
+          <td><%= vote.visitor.ip %></td>
           <td><%= vote.updated_at %></td>
         </tr>
         <% end %>
