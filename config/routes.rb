@@ -7,5 +7,6 @@ Rails.application.routes.draw do
 
   # Voting
   post '/candidates/:id/vote', to: 'candidates#vote', as: 'vote'
+  get '/set_cookie', to: 'candidates#set_cookie'
   
 end

@@ -1,7 +1,7 @@
 class CandidatesController < ApplicationController
   before_action :set_candidate, only: [:show, :edit, :update, :destroy, :vote]
   skip_before_filter :verify_authenticity_token, only: [:vote]
-  before_filter :set_visitor!
+  before_action :set_visitor!, only: [:vote]
 
   # GET /candidates
   # GET /candidates.json
@@ -88,32 +88,13 @@ class CandidatesController < ApplicationController
       redirect_to root_path, notice: 'you already voted'
     end
 
-    # respond_to do |format|
-    #   if @voted
-    #     format.json { render 'super', status: 200}
-    #   else
-    #     format.json { render 'crap', status: 400}
-    #   end
-    #   format.html { redirect_to @candidate, notice: @voted ? 'Your vote was cast' : 'You already voted in this category!' }
-    # end
+  end
+
+  def set_cookie
+    render nothing: true, status: 200
   end
 
   private
-
-    def set_visitor!
-      headers['Access-Control-Allow-Origin'] = '*'
-      headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-      headers['Access-Control-Request-Method'] = '*'
-      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-      ip = request.env["REMOTE_ADDR"]
-      if cookies[:ref].blank?
-        random_hash = SecureRandom.hex(15)
-        cookies[:ref] = { :value => random_hash, :expires => 6.months.from_now }
-        @visitor = Visitor.create(ip: ip, cookie_id: random_hash)
-      else
-        @visitor = Visitor.find_by(ip: ip, cookie_id: cookies[:ref])      
-      end
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_candidate
