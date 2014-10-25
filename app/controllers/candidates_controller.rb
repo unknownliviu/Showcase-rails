@@ -80,7 +80,12 @@ class CandidatesController < ApplicationController
         end
     end
 
-    render nothing: true, status: (@voted ? 200 : 404)
+    if @voted
+      render 'vote'
+    else
+      redirect_to root_path
+    end
+
     # respond_to do |format|
     #   if @voted
     #     format.json { render 'super', status: 200}
