@@ -80,14 +80,15 @@ class CandidatesController < ApplicationController
         end
     end
 
-    respond_to do |format|
-      if @voted
-        format.json { render 'super', status: 200}
-      else
-        format.json { render 'crap', status: 400}
-      end
-      format.html { redirect_to @candidate, notice: @voted ? 'Your vote was cast' : 'You already voted in this category!' }
-    end
+    render nothing: true, status: (@voted ? 200 : 404)
+    # respond_to do |format|
+    #   if @voted
+    #     format.json { render 'super', status: 200}
+    #   else
+    #     format.json { render 'crap', status: 400}
+    #   end
+    #   format.html { redirect_to @candidate, notice: @voted ? 'Your vote was cast' : 'You already voted in this category!' }
+    # end
   end
 
   private
