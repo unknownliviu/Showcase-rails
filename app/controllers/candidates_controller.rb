@@ -68,19 +68,9 @@ class CandidatesController < ApplicationController
       redirect_to @candidate, alert: 'Your vote is invalid!' and return
     end
 
-    votes = @visitor.cast_votes
-    @voted = false
+    fancy_vote = FancyVote.new(candidate_id: @candidate.id, visitor_id: @visitor.id)
 
-    if votes.count == 0
-      @candidate.liked_by @visitor
-      @voted = true
-    elsif votes.count == 1
-        vote = votes.first
-        if vote.votable.sex != @candidate.sex
-          @candidate.liked_by @visitor
-          @voted = true
-        end
-    end
+    @voted = fancy_vote.save
 
     if @voted
       render 'vote'

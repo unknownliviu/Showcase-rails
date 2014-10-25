@@ -11,6 +11,7 @@
 
 class Visitor < ActiveRecord::Base
   acts_as_votable
+  has_many :fancy_votes
 
   validates :ip, :cookie_id, presence: true
   validates :ip, uniqueness: {scope: :cookie_id}

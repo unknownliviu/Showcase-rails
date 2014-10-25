@@ -12,4 +12,5 @@
 
 class Candidate < ActiveRecord::Base
   acts_as_votable
+  has_many :fancy_votes
 end
