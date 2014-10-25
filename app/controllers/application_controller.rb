@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 
   def set_visitor!
     ip = request.env["REMOTE_ADDR"]
+    @visitor = nil
     if cookies[:ref]
       @visitor   =  Visitor.find_by(ip: ip, cookie_id: cookies[:ref]) 
       @visitor ||=  Visitor.create(ip: ip, cookie_id: cookies[:ref])
