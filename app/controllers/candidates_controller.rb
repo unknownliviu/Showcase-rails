@@ -83,7 +83,7 @@ class CandidatesController < ApplicationController
     if @voted
       render 'vote'
     else
-      redirect_to root_path
+      redirect_to root_path, notice: 'you already voted '
     end
 
     # respond_to do |format|
