@@ -38,6 +38,8 @@ gem 'rails_12factor'
 
 gem 'devise'
 
+gem 'newrelic_rpm'
+
 gem 'acts_as_votable', '~> 0.10.0'
 
 # Use ActiveModel has_secure_password
