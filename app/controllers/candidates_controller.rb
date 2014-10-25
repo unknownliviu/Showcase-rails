@@ -1,6 +1,7 @@
 class CandidatesController < ApplicationController
   before_action :set_candidate, only: [:show, :edit, :update, :destroy, :vote]
   skip_before_filter :verify_authenticity_token, only: [:vote]
+  skip_before_filter :set_cookies!, only: :vote
   before_action :set_visitor!, only: [:vote]
 
   # GET /candidates
