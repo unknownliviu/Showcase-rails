@@ -5,11 +5,19 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true,  :async => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, :async => true %>
   <%= csrf_meta_tags %>
+	<link href="/assets/mb-icon.png" rel="apple-touch-icon" type="image/png" />
+	<link href="/assets/mb-icon.png" rel="apple-touch-icon-precomposed" type="image/png" />
 </head>
 <body>
-		<%= render 'layouts/navbar' %>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+		<% cache do  %>
+			<%= render 'layouts/navbar' %>
+    <% end %>
+		<%cache notice do%>
+		 	<p class="notice"><%= notice %></p>.
+    <%end%>
+		<%cache alert do%>
+		 <p class="alert"><%= alert %></p>.
+		<%end%> 
 <%= yield %>
 
 </body>

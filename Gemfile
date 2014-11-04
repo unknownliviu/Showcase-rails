@@ -33,6 +33,8 @@ gem 'rack-zippy'
 gem 'async-rails'
 
 gem 'devise'
+
+gem 'rack-mini-profiler'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
