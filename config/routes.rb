@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  
+
+  resources :page_templates
+
   devise_for :users
   root 'faq#index'
 

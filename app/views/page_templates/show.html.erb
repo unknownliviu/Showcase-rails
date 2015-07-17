@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<h2>Page Preview</h2>
+<hr>
+<br>
+  <%= raw(@page_template.page_header) %>
+  <%= raw(@page_template.page_body) %>
+  <%= raw(@page_template.page_footer) %>
+<br>
+<hr>
+<h2>End preview</h2>
+<%= link_to 'Edit', edit_page_template_path(@page_template) %> |
+<%= link_to 'Back', page_templates_path %>
